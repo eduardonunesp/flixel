@@ -245,8 +245,10 @@ package org.flixel
 		 */
 		static public function log(Data:Object):void
 		{
-			if((_game != null) && (_game._debugger != null))
+			if((_game != null) && (_game._debugger != null)) {
 				_game._debugger.log.add((Data == null)?"ERROR: null object":Data.toString());
+				trace(Data.toString());	
+			}
 		}
 		
 		/**

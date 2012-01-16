@@ -288,11 +288,17 @@ package org.flixel
 		 */
 		public function loadGraphics(Graphic:Array, Animated:Boolean=false, Reverse:Boolean=false, Width:uint=0, Height:uint=0, Unique:Boolean=false):FlxSprite {   
 			_bakedRotation = 0;
+
+			var tmpBData:BitmapData = FlxG.addBitmap(Graphic[0], Reverse, Unique);
+			var tmpPixels:BitmapData = new BitmapData(tmpBData.width * Graphic.length, tmpBData.height);
+			tmpPixels.copyPixels(tmpBData, new Rectangle(0, 0, tmpBData.width, tmpBData. height), new Point(0, 0), null, null, true);
 			
-			for(var i:uint = 0; i < Graphic.lenght;i++) {
-				var tmpPixels:BitmapData = FlxG.addBitmap(Graphic[i], Reverse, Unique);
-				_pixels.merge(tmpPixels, new Rectangle(0, 0, tmpPixels.width, tmpPixels.height), new Point(_pixels.width, 0), 0, 0, 0, 0);
+			for(var i:uint = 1; i < Graphic.length;i++) {
+				tmpBData = FlxG.addBitmap(Graphic[i], Reverse, Unique);
+				tmpPixels.copyPixels(tmpBData, new Rectangle(0, 0, tmpBData.width, tmpBData. height), new Point(tmpBData.width*i, 0), null, null, true);
 			}
+			
+			_pixels = tmpPixels;
 			
 			if(Reverse)
 				_flipped = _pixels.width>>1;
