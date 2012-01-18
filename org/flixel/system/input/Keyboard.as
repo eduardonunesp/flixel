@@ -182,11 +182,7 @@ package org.flixel.system.input
 		 */
 		public function handleKeyDown(FlashEvent:KeyboardEvent):void
 		{
-			var object:Object = _map[FlashEvent.keyCode];
-			if(object == null) return;
-			if(object.current > 0) object.current = 1;
-			else object.current = 2;
-			this[object.name] = true;
+			this.setKeyPress(FlashEvent.keyCode);
 		}
 		
 		/**
@@ -196,11 +192,7 @@ package org.flixel.system.input
 		 */
 		public function handleKeyUp(FlashEvent:KeyboardEvent):void
 		{
-			var object:Object = _map[FlashEvent.keyCode];
-			if(object == null) return;
-			if(object.current > 0) object.current = -1;
-			else object.current = 0;
-			this[object.name] = false;
+			this.setKeyRelease(FlashEvent.keyCode);
 		}
 	}
 }
