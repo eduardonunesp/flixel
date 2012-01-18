@@ -112,6 +112,22 @@ package org.flixel
 			var lowerBound:Number = (Value<Min)?Min:Value;
 			return (lowerBound>Max)?Max:lowerBound;
 		}
+
+        /**
+         * Generates range array of uint
+         *
+         * @param  Begin the number to begin
+         * @param  End the number limit to genarates
+         *
+         * @return Return the array gerated with Begin and End
+         *
+         */
+        static public function range(Begin:uint, End:uint):Array {
+            var a:Array = new Array();
+            for(var i:uint = Begin; i <= End;i++)
+                a.push(i);
+            return a;
+        }
 		
 		/**
 		 * Generates a random number based on the seed provided.
