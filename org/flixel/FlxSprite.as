@@ -286,14 +286,15 @@ package org.flixel
 		 * 
 		 * @return	This FlxSprite instance (nice for chaining stuff together, if you're into that).
 		 */
-		public function loadGraphics(Graphic:Array, Animated:Boolean=false, Reverse:Boolean=false, Width:uint=0, Height:uint=0, Unique:Boolean=false):FlxSprite {   
+		public function loadGraphics(Graphic:Array, Reverse:Boolean=false, Width:uint=0, Height:uint=0, Unique:Boolean=false):FlxSprite {   
 			_bakedRotation = 0;
 
 			var tmpBData:BitmapData = FlxG.addBitmap(Graphic[0], Reverse, Unique);
 			var tmpPixels:BitmapData = new BitmapData(tmpBData.width * Graphic.length, tmpBData.height);
 			tmpPixels.copyPixels(tmpBData, new Rectangle(0, 0, tmpBData.width, tmpBData. height), new Point(0, 0), null, null, true);
 			
-			for(var i:uint = 1; i < Graphic.length;i++) {
+			for(var i:uint = 1; i < Graphic.length;i++) 
+            {
 				tmpBData = FlxG.addBitmap(Graphic[i], Reverse, Unique);
 				tmpPixels.copyPixels(tmpBData, new Rectangle(0, 0, tmpBData.width, tmpBData. height), new Point(tmpBData.width*i, 0), null, null, true);
 			}
@@ -305,22 +306,12 @@ package org.flixel
 			else
 				_flipped = 0;
 			
-			if(Width == 0) {   
-				if(Animated)
-					Width = _pixels.height;
-				else if(_flipped > 0)
-					Width = _pixels.width*0.5;
-				else
-					Width = _pixels.width;
-			}   
+			if(Width == 0) 
+                Width = _pixels.height;
 			
 			width = frameWidth = Width;
-			if(Height == 0) {   
-				if(Animated)
-					Height = width;
-				else
-					Height = _pixels.height;
-			}   
+			if(Height == 0)    
+                Height = width;
 			
 			height = frameHeight = Height;
 			resetHelpers();
